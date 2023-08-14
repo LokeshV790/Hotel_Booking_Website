@@ -1,6 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRoute from "./routes/auth.js";
+import hotelsRoute from "./routes/hotels.js";
+import roomsRoute from "./routes/rooms.js";
+import usersRoute from "./routes/users.js";
 const app = express();
 dotenv.config();
 
@@ -23,6 +27,15 @@ mongoose.connection.on("disconnected", ()=>{
 mongoose.connection.on("connected", ()=>{
     console.log("Mongodb Connected.")
 })
+
+app.get("/users", (req,res)=>{
+ res.send("hello first request")   
+})
+
+app.use("/auth", authRoute);
+app.use("/hotels", hotelsRoute);
+app.use("/rooms", roomsRoute);
+app.use("/users", usersRoute);
 
 app.listen(8800, () => {
   console.log("Connected to backend..on port : 8800");
