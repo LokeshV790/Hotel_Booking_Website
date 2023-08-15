@@ -1,5 +1,5 @@
-export const createError = (status, message)=>{
-    const err = new Error();
-    err.status= status;
-    err.message=message;
+export const createError = (status, message) => {
+    const err = new Error(message);
+    err.status = status;
+    return err;
 };
